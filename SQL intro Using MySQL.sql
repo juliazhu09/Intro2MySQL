@@ -296,7 +296,7 @@ SELECT COUNT(*) FROM employees;
 SELECT COUNT(*) FROM employees
 WHERE gender='f';
 
--- Exercise 4
+-- Exercise:
 -- Find out how many employees's less than 40 years old;
 
 
@@ -324,7 +324,6 @@ SELECT max(current_salary) as max_salary, min(current_salary) as min_salary
 
 
 -- ====== Use Subqueries =======
-
 -- Find the max salary's employee's information
 -- Two ways to find the max salary employee's info
 -- 1. Use order by salary and limit 1
@@ -336,7 +335,7 @@ SELECT * FROM employees
 WHERE current_salary =
     (SELECT MAX(current_salary) FROM employees);
     
--- Exercise 5:
+-- Exercise:
 -- Find out the employees information with longest experience;
 
 
@@ -350,7 +349,7 @@ FROM employees
 GROUP BY job_category
 ORDER BY Job_category;
 
--- Exercise 6:
+-- Exercise:
 -- Find out the count max, min, and average experience by each job category;
 
 --  ======= Having Condition =======
@@ -365,7 +364,7 @@ HAVING Count(*) < 10
 ORDER BY Job_category;
 
 
--- Exercise 7:
+-- Exercise:
 -- Find out the count max, min, and average experience by each job category;
 
 
@@ -423,7 +422,7 @@ SELECT *
     FULL JOIN employee_names using (id);
     
     
--- Exercise 8:
+-- Exercise:
 -- Inner join the employees and employee_names table use Using (ID); 
 
  
