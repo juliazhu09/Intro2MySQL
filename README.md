@@ -1,1 +1,1 @@
-Welcome to Intro2Python workshop!
+Welcome to Intro2MySQL workshop!
