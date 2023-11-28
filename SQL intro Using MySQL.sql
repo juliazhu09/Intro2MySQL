@@ -6,8 +6,8 @@
       ================================= 
  
  -- === Researching Computing Support ===
---  UT people get 15 hours per semester of
-	free help in 540 Greve Hall:
+	UT people get 15 hours per semester of
+	free help:
 
 	HelpDesk: 974-9900
 	Walk-in Schedule:
@@ -15,71 +15,141 @@
 
   =========== WHAT IS DATABASE? ===========
 1.	A collection of data
+	- a filing cabinet full of medical records
+    - list of things to buy at grocery store
+    - a Rolodex full of different people's contact information
+    - a phone book
   A Quick example. 
+  Imagine you have a gigantic phone book and I ask you 
+  to do something like,
 •	Find Ned Flander‘s phone number
 •	Find people with first name “Ned”
 •	Find All phone numbers with area code 865
 •	Find All people who have a 3-letter First name
+It's not easy, and it would take a lot of time to find the information.
+
 2.	A method for accessing and manipulating that data.
+	For the phone book's example, going back to this phone book,
+	We would want a way, some sort of program or code,
+	that would allow us to find everybody with the first name Ned.
+    or find all people who have a three letter first name.
+    
 Database vs Database & Management system
+Database management system: have data and an interface for that data.
+
+For example: we have a chatting app, user data, images,
+		and all different information/dataset. 
+For all the application to be able to do things, 
+		like add a new user,
+		update an address of the current user, 
+        we need a database management system (DBMS).
+        that allow us interface with the database.
+        
 Apps-> DBMS-> Database
-My SQL, SQLite, Oracle Database: database management system
+
+MySQL, SQLite, Oracle Database: database management system
 Database is a structured set of computerized data with an accessible interface. 
 
  =========== SQL vs MySQL ===========
-SQL is the language we use to “talk” to our databases
-“Find all users”, “Add a new user”, “Delete all the inactivate users”
-Working with MYSQL is primarily writing SQL. 
-Rational database
-•	My SQL
-•	SQLite
-•	Oracle Database    all use SQL
-•	PostgreSQL
-•	Others
+SQL (structured query language) is the language we use to “talk” to our databases
+“Find all users”, “Add a new user”, “Delete all the inactivate users” 
+The code are called SQL queries, structured query language. */
+-- SQL Code Example: 
+SELECT first_name, last_name, phone_number 
+FROM phonebook
+WHERE first_name="Ned";
+
+/* Working with MYSQL is primarily writing SQL. 
+Rational database:
+	•	My SQL
+	•	SQLite
+	•	Oracle Database  --> all use SQL
+	•	PostgreSQL
+	•	Others
+ Rational database: organizes data into one or more tables (or "relations") of 
+         columns and rows, with a unique key identifying each row.
 SQL is a structured query language. It exists separately from MySQL, 
  and MySQL is a database management system that implements SQL. 
+ There is a standard for how SQL should work. 
+ All of these different database management systems
+basically are tasked with implementing that standard
+in their own database and making it work.
+
+SQL standard: https://blog.ansi.org/sql-standard-iso-iec-9075-2023-ansi-x3-135/#gref
+=========== MySQL SERVER and WORKBENCH ===========
+MySql Server is a client/server system that consists of a multithreaded SQL server 
+    that supports different back ends, several different client programs and libraries, 
+    administrative tools, and a wide range of application programming interfaces (APIs). 
+MySql workbench is a graphical user interface (GUI) or which helps us interact with MySql server database 
+Definition from MySQL website: a unified visual tool for database architects, developers, and DBAs. 
+MySQL Workbench provides data modeling, SQL development, and comprehensive administration tools 
+for server configuration, user administration, backup, and much more. 
+MySQL Workbench is available on Windows, Linux and Mac OS X.
+Install MySQL on windows:https://www.youtube.com/watch?v=u96rVINbAUI&t=16s 
  */
 
- -- ======= DOCUMENTING YOUR SQL Command =======
+-- ======= DOCUMENTING YOUR SQL COMMAND =======
 -- Single line comments use -- 
 -- Comments go from "--" to the end of the line (will not be executed).
 -- Multi-line comments: use /* and */ to comment 
--- SQL commend use semicolon ";"to finish the command
+
 
 -- ======== CREATE, DROP, USE DATABASES ========
---  A database server may contain multiple databases, like student database, employee database, or book  database. 
+--  A database server may contain multiple databases, like student database, 
+--  employee database, or book database. 
+--  We want to save each set of data in its own space instead of mixed all the table together.
+
 --  To list the available databases in the database server
 	show databases;
+
+-- Note: SQL commend use semicolon ";"to finish the command
+
 --  The general command to create a database: 
 --	CREATE DATABASE <database_name>;
 --  A specific example:
-Create database pet_store;
---  To drop a database 
+Drop Database pet_store;
+Create Database pet_store;
+Create Database DogApp;
+Create Database Cat store;
+-- Note: can't put a space in a variable name but use underscore instead. 
+-- Whether the name is captialized or not does not matter in SQL.
+-- Basically, capitalized all the SQL keywords like create and 
+-- database that are always the same, because it helps the key words
+-- stand out from your content.
+--  To Delete a database 
+--  Do this to be quite careful 
+--  Once you delete a database, it will remove a database entirely
+--  and all of it's contents, like tables, will be removed.
 --	DROP DATABASE <database-name>;
-Drop database pet_store;
+	Drop DATABASE DogAPP;
+	SHOW Databases;
 --  To use a database:
-	USE pet_store;
+--  select a database and then we can work with it.
+--	USE <database-name>;
+    USE pet_store;
 
 -- ===========  TABLES  ===========
+--  Table is the real heart of SQL.
 --  A database is just a bunch of tables in a relational database, at least.
 --  Tables hold the data! 
 --  “A collection of related data held in a structured format within a database”.
-
 -- Create a Table:
 -- We use CREATE TABLE statement to create a new table in a database.
 CREATE TABLE table_name (
-    column1 datatype,
+    column1 datatype constraints,,
     column2 datatype,
     column3 datatype,
    ....
 );
 -- The column parameters specify the names of the columns of the table.
--- The datatype parameter specifies the type of data the column can hold (e.g. varchar, integer, date, etc.).
--- Tip: For an overview of the available data types, go to MySQL Data Types Reference, https://dev.mysql.com/doc/refman/8.0/en/data-types.html.
+-- The datatype parameter specifies the type of data the column can hold (e.g. varchar, integer, date, Decimal, etc.).
+-- Use comma ',' to separate the variables. 
+-- Tip: For an overview of the available data types, go to MySQL Data Types Reference, 
+--      https://dev.mysql.com/doc/refman/8.0/en/data-types.html.
 -- Example1 :
 	CREATE TABLE cats (
 		catname VARCHAR(50),
-		age INT
+        age INT
 	);
 -- Example2:
  	CREATE TABLE dogs (
@@ -91,38 +161,41 @@ CREATE TABLE table_name (
 	Show tables;
 	Show COLUMNS FROM cats;
 	DESC CATS;
--- Delete a table
+-- DELETE A TABLE
 -- We use DROP TABLE statement to delete a table. 
-	DROP TABLE <table-name>;
+-- DROP TABLE <table-name>;
 -- For example, we want to drop the cats table;
-	DROP TABLE cats;
-    
+	DROP TABLE dogs;
+    Show tables;
 -- =========== Insert Values ===========
 --  We use INSERT INTO statement to insert one or multiple values to a table. 
--- 	 Recreate the cat table.
-	CREATE TABLE cats (
-		name VARCHAR(50),
-		age INT
-	);
 --  two ways to insert values
---  1. we will specify both the column names and the values to be insertedinserted:
+--  1. we will specify both the column names and the values to be inserted:
 --  insert a cat:
-	INSERT INTO cats (name, age) VALUES ('Blue Steele', 5);
+	INSERT INTO cats (catname, age) 
+    VALUES ('Blue', 5);
 --  2. If we add values for all the columns of the table, we do not need to specify the column names.
 --  However, make sure the order of the values is in the same order as the columns in the table. 
 --  Here, the INSERT INTO syntax would be as follows:
-	INSERT INTO cats VALUES ('Jenkins', 7);
--- Check our work:
+	INSERT INTO cats 
+    VALUES ('Jenkins', 7);
+--  Check our work:
 --  We use SELECT statement followed by FROM keyword to select the rows from a table or mutliple tables in the database. 
-	SELECT * FROM cats;
+	SELECT * 
+    FROM cats;
+--  Note: The key words like SELECT or FROM will start a new line  
+--  It will make the code easily to read in practice.
+
 --  Insert multiple values;
 	INSERT INTO cats 
 	VALUES 
 	  ('Meatball', 5), 
 	  ('Turkey', 1), 
 	  ('Potato Face', 15);
+      SELECT *
+      FROM cats;
 -- Exercise:
---  insert a cat named Jaja and his age is 7 into the cats dataset. 
+--  insert a cat named 'Jaja' and her age is 7 into the cats dataset. 
 --  using select statement to show it. 
 
 
@@ -132,11 +205,11 @@ CREATE TABLE table_name (
 --  Add a row without any values
 	INSERT INTO cats VALUES ();
 --  Check the data from cats
-	Select * from cats;
+	Select * FROM cats;
     DESC cats; -- default value is null if the value is missing. 
---  The null data is not what we wnat, we can use NOT NULL and set a default value. 
+--  The null data is not what we want, we can use NOT NULL and set a default value. 
     CREATE TABLE cats2  (    
-    name VARCHAR(20) NOT NULL DEFAULT 'unnamed',    
+    catname VARCHAR(20) NOT NULL DEFAULT 'unnamed',    
     age INT NOT NULL DEFAULT 99 
 );
 	DESC cats2;
@@ -146,20 +219,21 @@ CREATE TABLE table_name (
 --  It must contain UNIQUE values, and cannot contain NULL values. A table can have only ONE primary key. 
   CREATE TABLE cats3  (  
     catid INT primary key,
-    name VARCHAR(20) NOT NULL DEFAULT 'unnamed',    
+    catname VARCHAR(20) NOT NULL DEFAULT 'unnamed',    
     age INT NOT NULL DEFAULT 99 
 );
+	DESC cats3;
 -- We can use AUTO_INCREMENT to define the primary key.
---  AUTO_INCREMENT will uatomatically generate a unique number. 
- DROP TABLE  cats;
+--  AUTO_INCREMENT will automatically generate a unique number. 
+ DROP TABLE  cats, cats2;
  CREATE TABLE cats  (  
     catid INT AUTO_INCREMENT primary key,
-    name VARCHAR(100) NOT NULL DEFAULT 'unnamed',   
+    catname VARCHAR(100) NOT NULL DEFAULT 'unnamed',   
     breed VARCHAR(100),
     age INT NOT NULL DEFAULT 99 
 );
 -- add values 
-INSERT INTO cats(name, breed, age) 
+INSERT INTO cats(catname, breed, age) 
 VALUES ('Ringo', 'Tabby', 4),
        ('Cindy', 'Maine Coon', 10),
        ('Dumbledore', 'Maine Coon', 11),
@@ -167,27 +241,36 @@ VALUES ('Ringo', 'Tabby', 4),
        ('Misty', 'Tabby', 13),
        ('George Michael', 'Ragdoll', 9),
        ('Jackson', 'Sphynx', 7);
-SELECT * FROM cats;
+SELECT * 
+FROM cats;
 
 -- ===========   Foreign Key   ===========
 -- Foreign key: one or multiple columns in one table, that refers to the PRIMARY KEY in another table.
 -- Create a cat owner table
 CREATE TABLE cat_owners (
-    ID int NOT NULL,
+    ID int NOT NULL auto_increment,
     first_name VARCHAR(100),
     Last_name VARCHAR(100),
     CatID int,
     PRIMARY KEY (ID),
     FOREIGN KEY (CatID) REFERENCES cats(CatID)
 );
+
+-- We can create a diagram from existing database schema to view the database structrue. 
+-- This task is called reverse engineering, because we have the database already and we create the diagram from it.
+-- But usually we should build a physical database from the ER diagram – this is called forward engineering.
+-- To view the diagram of a database: Database --> Reverse Engineer --> ... -->Select a database 
+-- More information: https://www.youtube.com/watch?v=X_umYKqKaF0 
 -- =========== Where Condition ===========
---  WHERE cluase will return the records which fulfill a specified condition. 
+--  WHERE clause will return the records which fulfill a specified condition. 
 --  We want to select all the Tabby cats.
-SELECT * FROM Cats
+SELECT * 
+FROM Cats
 WHERE breed ='Tabby';
 --  We want to select all the Tabby cats' name and age.
 --  We just need to sepcify the column name after the select statement. 
-SELECT name, age FROM Cats
+SELECT catname, age 
+FROM Cats
 WHERE breed ='Tabby';
 -- Exercise:
 --  Select all the cats who are less than 10 years old using where condition. 
@@ -210,23 +293,30 @@ WHERE breed ='Tabby';
 -- Two Wildcards: % and _ used to match parts of a value.
 -- %: match any number of characters, zero, one, mutiple characters. 
 -- _: match a single character.
--- For example, find out all cat names contain letter 'o';
-SELECT name FROM Cats
-WHERE name like '%o%' ;
+-- For example, find out all the cat's names contain letter 'o';
+SELECT catname 
+FROM Cats
+WHERE catname like '%o%' ;
 
 -- Find the cat whose name's second letter is 'i'
-SELECT name FROM Cats
-WHERE name like '_i%' ;
+SELECT catname 
+FROM Cats
+WHERE catname like '_i%' ;
 -- Exercise:
 --  select the cat named with letter 'on' at the end;
 
 
 -- =========== Update Values ===========
--- The udpate statement modify the existing records in a table.alter
--- Update the cat named "Jaskson"'s age to 9
+-- The udpate statement modify the existing records in a table
+-- Update the cat named "Jackson"'s age to 9
+
+SELECT * 
+FROM cats
+where catname ='Jackson';
+
 UPDATE cats
   SET age = 9
-  WHERE name = 'Jackson';
+  WHERE catname = 'Jackson';
 -- Exercise:
 --  select the cat named 'Jackson' and update his name to 'Jack'. 
 
@@ -268,7 +358,8 @@ VALUES (1,'m',38,15,'3',57000,27000,98,144), (2,'m',32,16,'1',40200,18750,98,36)
 (43,'m',26,12,'1',23250,14250,95,46), (44,'m',27,8,'1',29250,14250,95,50), (45,'m',52,12,'2',30750,13500,95,307), (46,'f',50,15,'1',22350,12750,95,165), (47,'f',52,12,'1',30000,16500,95,228), (48,'m',43,12,'2',30750,14100,94,240), (49,'m',32,15,'1',34800,16500,94,93), (50,'m',30,16,'3',60000,23730,94,59);
 
 -- Check the table with 5 observations using LIMIT statement;
-SELECT * FROM employees
+SELECT * 
+FROM employees
 LIMIT 5;
 -- Update the job_category information
 UPDATE employees
@@ -281,45 +372,54 @@ UPDATE employees
   SET job_category = 'Manager'
   WHERE job_category = '3';
 -- Check table
-SELECT * FROM  employees
-WHERE job_category = '1';
+SELECT * 
+FROM  employees
+WHERE job_category = 'Clerical';
 
-SELECT * FROM  employees
+SELECT * 
+FROM  employees
 WHERE job_category = 'Custodial';
 -- ====== Count Function =======
 
 -- The COUNT() function returns the number of rows that matches a criterion.
 -- The COUNT(*) syntax allows us to count the number of rows in a table
 -- Count how many total employees in the dataset
-SELECT COUNT(*) FROM employees;
+SELECT COUNT(*) as count
+FROM employees;
 -- How many female employees?
-SELECT COUNT(*) FROM employees
+SELECT COUNT(*) as count
+FROM employees
 WHERE gender='f';
 
 -- Exercise:
--- Find out how many employees's less than 40 years old;
+-- Find out how many employees's age less than 40 years old;
 
 
 -- ====== Average Function =======
 
 -- Find out the average employees' salary 
-SELECT AVG(current_salary) FROM employees;
+SELECT AVG(current_salary) 
+FROM employees;
 -- Find out the average salary by gender using GROUP BY
-SELECT gender, AVG(current_Salary) FROM employees
+SELECT gender, AVG(current_Salary) 
+FROM employees
 GROUP BY gender;
 
--- Find out job category's average salary and count of the employee, Show the employee ORDERY BY job categroy
-SELECT  job_category, AVG(current_Salary), count(*) as Count FROM employees
+-- Find out job category's average salary and count of the employee, Show the employee ORDERY BY Count
+SELECT  job_category, AVG(current_Salary), count(*) as Count 
+FROM employees
 GROUP BY job_category
-ORDER BY job_category;
+ORDER BY Count;
 -- DESC order  
-SELECT  job_category, AVG(current_Salary), count(*) as Count FROM employees
+SELECT  job_category, AVG(current_Salary), count(*) as Count 
+FROM employees
 GROUP BY job_category
 ORDER BY Count DESC;
 
 -- ====== MIN and MAX Function =======
 -- FIND the max salary and min salary;
-SELECT max(current_salary) as max_salary, min(current_salary) as min_salary
+SELECT max(current_salary) as max_salary,
+ min(current_salary) as min_salary
  FROM employees;
 
 
@@ -327,16 +427,18 @@ SELECT max(current_salary) as max_salary, min(current_salary) as min_salary
 -- Find the max salary's employee's information
 -- Two ways to find the max salary employee's info
 -- 1. Use order by salary and limit 1
-SELECT * FROM employees
+SELECT * 
+FROM employees
 ORDER BY current_salary DESC
 Limit 1; 
 -- 2. Use a subquery
-SELECT * FROM employees
+SELECT * 
+FROM employees
 WHERE current_salary =
     (SELECT MAX(current_salary) FROM employees);
     
 -- Exercise:
--- Find out the employees information with longest experience;
+-- Find out the employees information with longest experience (experience_month);
 
 
 
@@ -344,17 +446,19 @@ WHERE current_salary =
 
 -- Find out the count, max, min, and average of each job catergory's education information. 
 SELECT Job_category, Count(*) as Count, Max(education_year) as max_education, 
-	Min(education_year) min_education, AVG(Education_year) as avg_education 
+	Min(education_year) as min_education, AVG(Education_year) as avg_education 
 FROM employees
 GROUP BY job_category
 ORDER BY Job_category;
 
 -- Exercise:
--- Find out the count max, min, and average experience by each job category;
+-- Find out the count, max, min, and average experience by each job category;
+
+
 
 --  ======= Having Condition =======
 -- Having is used to filter the groups (aggregation functions) because WHERE cannot be used with GROUP BY function. 
--- Use the prevsiou query to show the job_category with count number < 10
+-- Use the query to show the job_category with count number < 10
 
 SELECT Job_category, Count(*) as Count, Max(education_year) as max_education, 
 	Min(education_year) min_education, AVG(Education_year) as avg_education 
@@ -365,11 +469,13 @@ ORDER BY Job_category;
 
 
 -- Exercise:
--- Find out the count max, min, and average experience by each job category;
+-- Find out the count, max, min, and average job experience by each job category 
+--     with average experience is more than 120 months (10 years);
+
 
 
 -- ====== JOIN TABLES =======;
-drop tables employee_names;
+-- drop tables employee_names;
 -- Create a employee name table;
  CREATE TABLE employee_names(  
    id INT primary key,
@@ -387,16 +493,17 @@ Values (1,'Lauren','Peake'), (2,'Sally','Vaughan'), (3,'Christopher','Paige'), (
 (38,'Joseph','Miller'), (39,'Tracey','Kerr'), (40,'Penelope','Gibson'),(41,'Amanda','Davies'), (42,'Peter','Berry'), (43,'Molly','Butler'),
 (44,'Sonia','Wright'), (45,'James','Paige'), (46,'Carl','Walker'), (47,'Lucas','Newman'), (48,'Leonard','Welch'), (49,'Leah','Vaughan'),
 (50,'Bernadette','Mathis'), (51,'Justin','James'), (52,'Jake','Hodges'), (53,'Lillian','Scott'), (54,'Sam','Abraham'), (55,'Robert','James');
-SELECT count(*) FROM employee_names;
+SELECT count(*) 
+FROM employee_names;
 
 -- ====== Inner Join =======;
 
--- inner join: selects records that have matching values in both tables by using where condition
--- Join the employees and employees table by using ID from both tables;
+-- inner join: selects records that have matching values in both tables by using a condition
+-- Join the employee names and employees table by using ID from both tables;
 SELECT * 
 	FROM Employee_names 
     INNER JOIN employees
-    WHERE employee_names.id = employees.id;
+    ON employee_names.id = employees.id;
     
 
 -- ====== Left/right Join =======;
@@ -407,21 +514,17 @@ SELECT *
 -- NOTE: Instead of using where, We will use "On" for conditions. 
 -- Left join example
 SELECT * 
-	FROM Employee_names 
-    LEFT JOIN employees
-    ON employee_names.id = employees.id;
+FROM Employee_names 
+LEFT JOIN employees
+ON employee_names.id = employees.id;
+
 -- Right join example
 SELECT * 
-	FROM Employees  as a
-    RIGHT JOIN employee_names as b
-    ON a.id = b.id;
--- ====== Full Join =======
---  Full join: returns all records when there is a match in left (table1) or right (table2) table records.
-SELECT * 
-	FROM employees 
-    FULL JOIN employee_names using (id);
-    
-    
+FROM Employees  as a
+RIGHT JOIN employee_names as b
+ON a.id = b.id;
+
+ 
 -- Exercise:
 -- Inner join the employees and employee_names table use Using (ID); 
 
@@ -441,11 +544,12 @@ USE PET_STORE;
 
 CREATE VIEW Employee_info AS
 SELECT  a.id, first_name, last_name, current_salary, education_year, experience_month
-	FROM Employees  as a
-    JOIN employee_names as b
-    where a.id = b.id;
+FROM Employees  as a
+JOIN employee_names as b
+on a.id = b.id;
     
-SELECT * FROM EMPLOYEE_info;
+SELECT * 
+FROM EMPLOYEE_info;
 
    
 -- ====== ALTER TABLE =======
@@ -456,18 +560,33 @@ DESC cat_table;
 ALTER TABLE employee_names
 RENAME COLUMN id TO employee_id;
 DESC employee_names;
--- Modify a exisitng column's type
+-- Modify a exisitng column's datatype
 -- Modify the employee id to AUTO_INCREMENT
 ALTER TABLE employee_names
-MODIFY employee_id int auto_increment;
+MODIFY employee_id int(5)  zerofill auto_increment ; -- add zerofill to make 5 digits.
 DESC Employee_names;
+insert into employee_names (first_name, last_name) values ('Julia', 'Zhu');
+SELECT * 
+FROM employee_names 
+WHERE first_name = 'Julia';
+/*---GOOD SOURCES OF SQL LEARNING ---
 
+ SQL Tutorial:   https://www.w3schools.com/sql/default.asp
+ MySQL Tutorial: https://www.mysqltutorial.org/getting-started-with-mysql/
+ SQL Practice: https://www.sql-practice.com/
+ MySQL for Developers: https://planetscale.com/learn/courses/mysql-for-developers/introduction/course-introduction
+ Databases and Web Programming(CS465/CS565): https://web.eecs.utk.edu/~bvanderz/teaching/cs465Sp20/
+ Linkedin learning from OIT for free:   https://oit.utk.edu/training/online-training/lil/
+ Stackoverflow:          https://stackoverflow.com/questions*/
 
-    
+  
 -- ======  Final Exercise  ====== :
 -- ====================================================
 -- For user do not have MySQL installed
--- Go to the website: https://www.w3schools.com/sql/trysql.asp?filename=trysql_op_or 
+-- Go to the website: https://www.sql-practice.com/
+-- 0. Open the scheme and identify the primary key and foreign key in each table?
+
+
 -- 1. Show first name, last name, and gender of patients whose gender is 'M' (Q1):
 
 
@@ -478,7 +597,7 @@ DESC Employee_names;
 
 
 -- 3.  Show the first_name, last_name, and height of the patient with the greatest height. (Q9)
-
+-- hint: subqueries or use order by and limit 1
 
 
 
@@ -488,20 +607,22 @@ DESC Employee_names;
 
 -- 5. Show patient_id, first_name, last_name from patients whos diagnosis is 'Dementia'. (JOIN Q2)
 -- Primary diagnosis is stored in the admissions table.
+-- hint: join the patients and admissions table using (patient_id) and where = 'Dementia'
 
 
 
 -- 6. Show first_name, last_name, and the total number of admissions attended for each doctor.(JOIN Q3)
 -- Every admission has been attended by a doctor using count(*) 
+-- hint: join doctors and admissions table
 
 
 -- 7. What is that average height and average weight of the patients?
-
+-- 
 
 
 -- 8. Show the province_id(s), sum of height; 
 -- where the total sum of its patient's height is greater than or equal to 7,000.
--- Using having condition statement
+-- hint: having sum(height) > 7000
 
 
 
@@ -510,6 +631,9 @@ DESC Employee_names;
 -- Use the source command to load data into the MySQL Server:
 -- Use The Sakila Database from MySQL
 USE sakila;
+-- 0. Open the scheme and identify the primary key and foreign key in each table?
+
+
 -- 1. Find all actors whose last name is "Davis":
 
 
@@ -557,22 +681,10 @@ USE sakila;
 
 
 
+ /*---In a New Browser Tab---
 
+ https://workshop.utk.edu/feedback.php */  
 
-/*---GOOD SOURCES OF SQL LEARNING ---
-
- SQL Tutorial:   https://www.w3schools.com/sql/default.asp
- MySQL Tutorial: https://www.mysqltutorial.org/getting-started-with-mysql/
- SQL Practice: https://www.sql-practice.com/
- MySQL for Developers: https://planetscale.com/learn/courses/mysql-for-developers/introduction/course-introduction
- Databases and Web Programming(CS465/CS565): https://web.eecs.utk.edu/~bvanderz/teaching/cs465Sp20/
- Linkedin learning from OIT for free:   https://oit.utk.edu/training/online-training/lil/
- Stackoverflow:          https://stackoverflow.com/questions
-
-
- ---In a New Browser Tab---
-
- https://workshop.utk.edu/feedback.php */
  
  
   -- ====================================================
