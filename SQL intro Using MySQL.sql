@@ -6,9 +6,21 @@
       ================================= 
  
  -- === Researching Computing Support ===
-	UT people get 15 hours per semester of
-	free help:
-
+    RCS typically helps UT researchers with:
+	- Statistical consulting
+	- Research design and implementation
+	- Data collection strategies including; developing interview guides, 
+	  survey construction, and LabView data acquisition
+	- Data analysis using qualitative, quantitative, and GIS methods
+	- Co-author manuscript methods and results sections
+	- Provide specialized research software support services including:
+	- Installation and licensing
+	- Akindi exam scoring 
+	- Provide short courses, workshops and guest lectures 
+	  on supported specialized software used for research
+      
+	UT students get 15 hours per semester of free help:
+    UT faculty get 50 hours per year of	free help:
 	HelpDesk: 974-9900
 	Walk-in Schedule:
 	http://oit.utk.edu/research/schedule
@@ -57,21 +69,21 @@ The code are called SQL queries, structured query language. */
 -- SQL Code Example: 
 SELECT first_name, last_name, phone_number 
 FROM phonebook
-WHERE first_name="Ned";
+WHERE first_name= 'Ned';
 
 /* Working with MYSQL is primarily writing SQL. 
 Rational database:
-	•	My SQL
+	•	MySQL
 	•	SQLite
 	•	Oracle Database  --> all use SQL
 	•	PostgreSQL
 	•	Others
- Rational database: organizes data into one or more tables (or "relations") of 
+comments Rational database: organizes data into one or more tables (or "relations") of 
          columns and rows, with a unique key identifying each row.
 SQL is a structured query language. It exists separately from MySQL, 
- and MySQL is a database management system that implements SQL. 
- There is a standard for how SQL should work. 
- All of these different database management systems
+and MySQL is a database management system that implements SQL. 
+There is a standard for how SQL should work. 
+All of these different database management systems
 basically are tasked with implementing that standard
 in their own database and making it work.
 
@@ -81,7 +93,7 @@ MySql Server is a client/server system that consists of a multithreaded SQL serv
     that supports different back ends, several different client programs and libraries, 
     administrative tools, and a wide range of application programming interfaces (APIs). 
 MySql workbench is a graphical user interface (GUI) or which helps us interact with MySql server database 
-Definition from MySQL website: a unified visual tool for database architects, developers, and DBAs. 
+Definition from MySQL website: a uncommentsified visual tool for database architects, developers, and DBAs. 
 MySQL Workbench provides data modeling, SQL development, and comprehensive administration tools 
 for server configuration, user administration, backup, and much more. 
 MySQL Workbench is available on Windows, Linux and Mac OS X.
@@ -107,10 +119,9 @@ Install MySQL on windows:https://www.youtube.com/watch?v=u96rVINbAUI&t=16s
 --  The general command to create a database: 
 --	CREATE DATABASE <database_name>;
 --  A specific example:
-Drop Database pet_store;
-Create Database pet_store;
-Create Database DogApp;
-Create Database Cat store;
+CREATE DATABASE pet_store;
+CREATE DATABASE DogApp;
+CREATE DATABASE Cat store;
 -- Note: can't put a space in a variable name but use underscore instead. 
 -- Whether the name is captialized or not does not matter in SQL.
 -- Basically, capitalized all the SQL keywords like create and 
@@ -121,7 +132,7 @@ Create Database Cat store;
 --  Once you delete a database, it will remove a database entirely
 --  and all of it's contents, like tables, will be removed.
 --	DROP DATABASE <database-name>;
-	Drop DATABASE DogAPP;
+	DROP DATABASE DogAPP;
 	SHOW Databases;
 --  To use a database:
 --  select a database and then we can work with it.
@@ -136,7 +147,7 @@ Create Database Cat store;
 -- Create a Table:
 -- We use CREATE TABLE statement to create a new table in a database.
 CREATE TABLE table_name (
-    column1 datatype constraints,,
+    column1 datatype constraints,
     column2 datatype,
     column3 datatype,
    ....
@@ -160,7 +171,7 @@ CREATE TABLE table_name (
 -- Check:
 	Show tables;
 	Show COLUMNS FROM cats;
-	DESC CATS;
+	DESC cats;
 -- DELETE A TABLE
 -- We use DROP TABLE statement to delete a table. 
 -- DROP TABLE <table-name>;
@@ -396,7 +407,6 @@ WHERE gender='f';
 
 
 -- ====== Average Function =======
-
 -- Find out the average employees' salary 
 SELECT AVG(current_salary) 
 FROM employees;
